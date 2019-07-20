@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 export class DataService {
   // serverURL = 'https://8080-dot-4701191-dot-devshell.appspot.com';
   serverURL = 'https://genomex.appspot.com';
+  dataLoading = false;
+  snpsLoading = false;
   first_name: string;
   token: string;
   id: string;
@@ -25,15 +27,18 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getData(code: string) {
+    this.dataLoading = true;
     this.http.get<ResultsObj>(this.serverURL + '/' + code)
       .subscribe(data => {
           this.first_name = data.first_name;
           this.token = data.token;
           this.id = data.id;
+          this.dataLoading = false;
         });
   }
 
   getSNPs(chr: string) {
+    this.snpsLoading = true;
     this.currChr = chr;
     const promise = new Promise((resolve, reject) => {
       this.http.get(this.serverURL + '/snps/' + this.token + '/' + this.id + '/' + this.chrMap[chr])
@@ -44,6 +49,7 @@ export class DataService {
             const event = res[snpIndex];
             return event;
           });
+          this.snpsLoading = false;
           resolve();
         }
       );

@@ -1,27 +1,32 @@
 <br>
-<div *ngIf="dataService.geneticPage === 1">
-  <a routerLink="/results/genetic" (click)="dataService.getSNPs('1')">Chromosome 1</a><br>
-  <a routerLink="/results/genetic" (click)="dataService.getSNPs('2')">Chromosome 2</a><br>
-  <a routerLink="/results/genetic" (click)="dataService.getSNPs('3')">Chromosome 3</a><br>
-  <a routerLink="/results/genetic" (click)="dataService.getSNPs('4')">Chromosome 4</a><br>
+<div *ngIf="dataService.snpsLoading">
+  <img src="https://github.com/ekwok/genomex/blob/master/download.gif?raw=true">
 </div>
-<div *ngIf="dataService.geneticPage === 2">
-  <button class="btn darken-hover border" style="float: left" (click)="dataService.geneticPage = 1">&lt; Back</button><br><br>
-  <h3>Single Nucleotide Polymorphisms (SNPs) on Chromosome {{dataService.currChr}}</h3>
-  <table class="table table-hover">
-    <tr>
-      <th>#</th>
-      <th>SNP ID</th>
-      <th>Is Genotyped</th>
-      <th>Is Assayed</th>
-      <th>Is No Call</th>
-    </tr>
-    <tr *ngFor="let x of dataService.snps; let i = index">
-      <td><strong>{{i+1}}</strong></td>
-      <td>{{x.id}}</td>
-      <td>{{x.is_genotyped}}</td>
-      <td>{{x.is_assayed}}</td>
-      <td>{{x.is_no_call}}</td>
-    </tr>
-  </table>
+<div *ngIf="!dataService.snpsLoading">
+  <div *ngIf="dataService.geneticPage === 1">
+    <a routerLink="/results/genetic" (click)="dataService.getSNPs('1')">Chromosome 1</a><br>
+    <a routerLink="/results/genetic" (click)="dataService.getSNPs('2')">Chromosome 2</a><br>
+    <a routerLink="/results/genetic" (click)="dataService.getSNPs('3')">Chromosome 3</a><br>
+    <a routerLink="/results/genetic" (click)="dataService.getSNPs('4')">Chromosome 4</a><br>
+  </div>
+  <div *ngIf="dataService.geneticPage === 2">
+    <button class="btn darken-hover border" style="float: left" (click)="dataService.geneticPage = 1">&lt; Back</button><br><br>
+    <h3>Single Nucleotide Polymorphisms (SNPs) on Chromosome {{dataService.currChr}}</h3>
+    <table class="table table-hover">
+      <tr>
+        <th>#</th>
+        <th>SNP ID</th>
+        <th>Is Genotyped</th>
+        <th>Is Assayed</th>
+        <th>Is No Call</th>
+      </tr>
+      <tr *ngFor="let x of dataService.snps; let i = index">
+        <td><strong>{{i+1}}</strong></td>
+        <td>{{x.id}}</td>
+        <td>{{x.is_genotyped}}</td>
+        <td>{{x.is_assayed}}</td>
+        <td>{{x.is_no_call}}</td>
+      </tr>
+    </table>
+  </div>
 </div>

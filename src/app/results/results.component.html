@@ -1,12 +1,17 @@
-<p>Hello {{dataService.first_name}}!</p>
-<p>Access Token: {{dataService.token}}</p>
-<p>Profile ID: {{dataService.id}}</p>
-<ul class="nav nav-tabs justify-content-end">
-  <li class="nav-item">
-    <a class="nav-link" routerLink="genetic" routerLinkActive="active current"><span class="d-sm-none">Genetic</span><span class="d-none d-sm-block">Genetic Data</span></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="wellness" routerLinkActive="active current"><span class="d-sm-none">Wellness</span><span class="d-none d-sm-block">Wellness Reports</span></a>
-  </li>
-</ul>
-<router-outlet></router-outlet>
+<div *ngIf="dataService.dataLoading">
+  <img src="https://github.com/ekwok/genomex/blob/master/download.gif?raw=true">
+</div>
+<div *ngIf="!dataService.dataLoading">
+  <p>Hello {{dataService.first_name}}!</p>
+  <p>Access Token: {{dataService.token}}</p>
+  <p>Profile ID: {{dataService.id}}</p>
+  <ul class="nav nav-tabs justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="genetic" routerLinkActive="active current"><span class="d-sm-none">Genetic</span><span class="d-none d-sm-block">Genetic Data</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="wellness" routerLinkActive="active current"><span class="d-sm-none">Wellness</span><span class="d-none d-sm-block">Wellness Reports</span></a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>
