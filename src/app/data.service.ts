@@ -18,6 +18,7 @@ export class DataService {
   currChr: string;
   snpID: string;
   snpVariants: Array<any>;
+  snpClicked = -1;
 
   chrMap: {[key: string]: string} = {  // Map of chromosome names to accession numbers
     '1': 'NC_000001.10',
@@ -60,6 +61,7 @@ export class DataService {
   }
 
   getSNPDetails(idx: number) {
+    this.snpClicked = idx;
     this.geneticPage = 3;
 
     var snpObj = this.snps[idx];

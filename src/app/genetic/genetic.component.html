@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let x of dataService.snps; let i = index">
+          <tr *ngFor="let x of dataService.snps; let i = index" [ngClass]="{'highlighted': dataService.snpClicked === i}">
             <td><strong>{{i+1}}</strong></td>
             <td><a routerLink="/results/genetic" (click)="dataService.getSNPDetails(i)">{{x.id}}</a></td>
             <td>{{x.is_genotyped}}</td>
@@ -44,14 +44,14 @@
         <table class="table table-hover">
           <thead>
             <th>#</th>
-            <th>Chromosome</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Allele</th>
-            <th>Platforms</th>
-            <th>Dosage</th>
-            <th>Is Assayed</th>
-            <th>Is No Call</th>
+            <th>Chr <span matTooltip="chromosome on which the variant is found">&#9432;</span></th>
+            <th>Start <span matTooltip="chromosomal location of the start of the variant (counting from 0)">&#9432;</span></th>
+            <th>End <span matTooltip="chromosomal location of the end of the variant (counting from 0)">&#9432;</span></th>
+            <th>Allele <span matTooltip="nucleotide sequence of the variant">&#9432;</span></th>
+            <th>Platforms <span matTooltip="sequencing platforms that the variant is on">&#9432;</span></th>
+            <th>Dosage <span matTooltip="occurrence of the allele in the profile owner's genotype">&#9432;</span></th>
+            <th>Is Assayed <span matTooltip="true if the profile variant has been assayed">&#9432;</span></th>
+            <th>Is No Call <span matTooltip="true if the assay was performed and there were no results">&#9432;</span></th>
           </thead>
           <tbody>
             <tr *ngFor="let x of dataService.snpVariants; let i = index">
@@ -67,8 +67,10 @@
                 <ng-template #noPlatform>N/A</ng-template>
               </td>
               <td>
-                <div *ngIf="x.dosage !== null; else noDosage">{{x.dosage}}</div>
-                <ng-template #noDosage>N/A</ng-template>
+                <div *ngIf="x.dosage === 0">None Detected</div>
+                <div *ngIf="x.dosage === 1">Heterozygous</div>
+                <div *ngIf="x.dosage === 2">Homozygous</div>
+                <div *ngIf="x.dosage === null">N/A</div>
               </td>
               <td>{{x.is_assayed}}</td>
               <td>{{x.is_no_call}}</td>
