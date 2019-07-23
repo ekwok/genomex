@@ -5,3 +5,7 @@ button.darken-hover:hover {
 tr.highlighted {
   background-color: #ffe993;
 }
+
+button.spacing {
+  margin: 10px;
+}
