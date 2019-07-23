@@ -3,7 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import 'hammerjs';
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { DataService } from './data.service';
@@ -24,9 +27,23 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(routes), HttpClientModule ],
-  declarations: [ AppComponent, HelloComponent, HomeComponent, ResultsComponent, GeneticComponent, WellnessComponent ],
-  bootstrap:    [ AppComponent ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    MatTooltipModule,
+    BrowserAnimationsModule
+  ],
+  declarations: [
+    AppComponent,
+    HelloComponent,
+    HomeComponent,
+    ResultsComponent,
+    GeneticComponent,
+    WellnessComponent
+  ],
+  bootstrap: [ AppComponent ],
   providers: [ DataService ]
 })
 export class AppModule { }
