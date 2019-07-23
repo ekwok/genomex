@@ -18,9 +18,9 @@
           <tr>
             <th>#</th>
             <th>SNP ID</th>
-            <th>Is Genotyped <span matTooltip="true if the profile marker has been successfully genotyped for the profile" class="text-primary">[?]</span></th>
-            <th>Is Assayed <span matTooltip="true if all profile variants were assayed for the profile marker" class="text-primary">[?]</span></th>
-            <th>Is No Call <span matTooltip="true if the assay was performed and there were no results for any of the the profile marker's profile variants" class="text-primary">[?]</span></th>
+            <th>Is Genotyped <span matTooltip="true if the profile marker has been successfully genotyped for the profile">&#9432;</span></th>
+            <th>Is Assayed <span matTooltip="true if all profile variants were assayed for the profile marker">&#9432;</span></th>
+            <th>Is No Call <span matTooltip="true if the assay was performed and there were no results for any of the the profile marker's profile variants">&#9432;</span></th>
           </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@
             <th>Start</th>
             <th>End</th>
             <th>Allele</th>
-            <th>Platform Labels</th>
+            <th>Platforms</th>
             <th>Dosage</th>
             <th>Is Assayed</th>
             <th>Is No Call</th>
@@ -60,8 +60,16 @@
               <td>{{x.start}}</td>
               <td>{{x.end}}</td>
               <td>{{x.allele}}</td>
-              <td>{{x.platform_labels}}</td>
-              <td>{{x.dosage}}</td>
+              <td>
+                <div *ngIf="x.platform_labels.length > 0; else noPlatform">
+                  <li *ngFor="let label of x.platform_labels">{{label}}</li>
+                </div>
+                <ng-template #noPlatform>N/A</ng-template>
+              </td>
+              <td>
+                <div *ngIf="x.dosage !== null; else noDosage">{{x.dosage}}</div>
+                <ng-template #noDosage>N/A</ng-template>
+              </td>
               <td>{{x.is_assayed}}</td>
               <td>{{x.is_no_call}}</td>
             </tr>
