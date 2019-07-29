@@ -1,3 +1,10 @@
-<p>
-wellness works!
-</p>
+<div *ngIf="dataService.wellnessLoading">
+  <img src="https://github.com/ekwok/genomex/blob/master/DNA-2.2s-200px.gif?raw=true">
+</div>
+<div *ngIf="!dataService.wellnessLoading">
+  <div *ngIf="dataService.wellnessPage === 1">
+    <button class="btn darken-hover border spacing" (click)="dataService.getReport('genetic_weight')">Genetic Weight</button><br>
+    <button class="btn darken-hover border spacing" (click)="dataService.getReport('wellness.alcohol_flush_reaction')">Alcohol Flush Reaction</button><br>
+    <button class="btn darken-hover border spacing" (click)="dataService.getReport('wellness.caffeine_consumption')">Caffeine Consumption</button><br>
+  </div>
+</div>

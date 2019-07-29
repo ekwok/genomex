@@ -10,6 +10,7 @@ export class DataService {
   serverURL = 'https://genomex.appspot.com';
   dataLoading = false;
   snpsLoading = false;
+  wellnessLoading = false;
   first_name: string;
   token: string;
   id: string;
@@ -19,6 +20,7 @@ export class DataService {
   snpID: string;
   snpVariants: Array<any>;
   snpClicked: number;
+  wellnessPage = 1;
 
   chrMap: {[key: string]: string} = {  // Map of chromosome names to accession numbers
     '1': 'NC_000001.10',
@@ -89,6 +91,10 @@ export class DataService {
     var snpObj = this.snps[idx];
     this.snpID = snpObj.id;
     this.snpVariants = snpObj.variants;
+  }
+
+  getReport(report: string) {
+    return
   }
 
 }

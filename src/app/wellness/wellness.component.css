@@ -1,0 +1,7 @@
+button.darken-hover:hover {
+  background-color: lightgray;
+}
+
+button.spacing {
+  margin: 10px;
+}

@@ -2,10 +2,10 @@ button.darken-hover:hover {
   background-color: lightgray;
 }
 
-tr.highlighted {
-  background-color: #ffe993;
-}
-
 button.spacing {
   margin: 10px;
+}
+
+tr.highlighted {
+  background-color: #ffe993;
 }
