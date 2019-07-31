@@ -21,6 +21,8 @@ export class DataService {
   snpVariants: Array<any>;
   snpClicked: number;
   wellnessPage = 1;
+  reports = [];
+  currReport = {};
 
   chrMap: {[key: string]: string} = {  // Map of chromosome names to accession numbers
     '1': 'NC_000001.10',
@@ -93,8 +95,29 @@ export class DataService {
     this.snpVariants = snpObj.variants;
   }
 
-  getReport(report: string) {
-    return
+  getReports() {
+    if (this.reports.length) {  // Do not fetch reports if they have already been fetched
+      return
+    }
+    this.wellnessLoading = true;
+    const promise = new Promise((resolve, reject) => {
+      this.http.get(this.serverURL + '/wellness/' + this.token + '/' + this.id)
+      .toPromise()
+      .then(
+        res => {
+          this.reports = Object.keys(res).map(function(reportIndex) {
+            const event = res[reportIndex];
+            return event;
+          });
+          this.wellnessLoading = false;
+          resolve();
+        }
+      );
+    });
+  }
+
+  showReport(report: string) {
+    this.wellnessPage = 2;
   }
 
 }

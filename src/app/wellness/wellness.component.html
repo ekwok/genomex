@@ -3,8 +3,10 @@
 </div>
 <div *ngIf="!dataService.wellnessLoading">
   <div *ngIf="dataService.wellnessPage === 1">
-    <button class="btn darken-hover border spacing" (click)="dataService.getReport('genetic_weight')">Genetic Weight</button><br>
-    <button class="btn darken-hover border spacing" (click)="dataService.getReport('wellness.alcohol_flush_reaction')">Alcohol Flush Reaction</button><br>
-    <button class="btn darken-hover border spacing" (click)="dataService.getReport('wellness.caffeine_consumption')">Caffeine Consumption</button><br>
+    <button class="btn darken-hover border spacing" (click)="dataService.showReport('genetic_weight')">Genetic Weight</button><br>
+    <button class="btn darken-hover border spacing" (click)="dataService.showReport('wellness.alcohol_flush_reaction')">Alcohol Flush Reaction</button><br>
+    <button class="btn darken-hover border spacing" (click)="dataService.showReport('wellness.caffeine_consumption')">Caffeine Consumption</button><br>
+  </div>
+  <div *ngIf="dataService.wellnessPage === 2">
   </div>
 </div>

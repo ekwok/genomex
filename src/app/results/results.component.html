@@ -10,7 +10,7 @@
       <a class="nav-link" routerLink="genetic" routerLinkActive="active current"><span class="d-sm-none">Genetic</span><span class="d-none d-sm-block">Genetic Data</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="wellness" routerLinkActive="active current"><span class="d-sm-none">Wellness</span><span class="d-none d-sm-block">Wellness Reports</span></a>
+      <a class="nav-link" routerLink="wellness" routerLinkActive="active current" (click)="dataService.getReports()"><span class="d-sm-none">Wellness</span><span class="d-none d-sm-block">Wellness Reports</span></a>
     </li>
   </ul>
   <br>
