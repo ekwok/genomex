@@ -23,6 +23,7 @@ export class DataService {
   wellnessPage = 1;
   reports = [];
   currReport = {};
+  isWellness = false;
 
   chrMap: {[key: string]: string} = {  // Map of chromosome names to accession numbers
     '1': 'NC_000001.10',
@@ -117,6 +118,16 @@ export class DataService {
   }
 
   showReport(report: string) {
+    for (let obj of this.reports) {
+      if (obj.report_id === report) {
+        this.currReport = obj;
+        if (obj.report_type === 'wellness') {
+          this.isWellness = true;
+        } else {
+          this.isWellness = false;
+        }
+      }
+    }
     this.wellnessPage = 2;
   }
 
