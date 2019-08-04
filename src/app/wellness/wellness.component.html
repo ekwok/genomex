@@ -19,7 +19,62 @@
         <p>genetic weight</p>
       </div>
       <div *ngIf="dataService.isWellness">
-        <p>wellness</p>
+        <h4>Genes:</h4><br>
+        <div *ngFor="let x of dataService.currReport.genes">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td>{{x.id}}</td>
+                </tr>
+                <tr>
+                  <th>Chromosome</th>
+                  <td>{{x.chromosome}}</td>
+                </tr>
+                <tr>
+                  <th>Description</th>
+                  <td>{{x.gene_overview}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </div>
+        </div>
+        <h4>Markers</h4>
+        <div *ngFor="let x of dataService.currReport.markers">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th>ID</th>
+                  <td>{{x.id}}</td>
+                </tr>
+                <tr>
+                  <th>Label</th>
+                  <td>{{x.label}}</td>
+                </tr>
+                <tr>
+                  <th>Gene(s)</th>
+                  <td>{{x.genes}}</td>
+                </tr>
+                <tr>
+                  <th>Gene Description</th>
+                  <td>{{x.gene_description}}</td>
+                </tr>
+                <tr>
+                  <th>Mutation Type</th>
+                  <td>{{x.mutation_type}}</td>
+                </tr>
+                <tr>
+                  <th>Explanation</th>
+                  <td>{{x.explanation}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </div>
+        </div>
       </div>
     </div>
   </div>
