@@ -3,18 +3,24 @@
 </div>
 <div *ngIf="!dataService.wellnessLoading">
   <div *ngIf="dataService.wellnessPage === 1">
-    <button class="btn darken-hover border spacing" (click)="dataService.showReport('genetic_weight')">Genetic Weight</button><br>
-    <button class="btn darken-hover border spacing" (click)="dataService.showReport('wellness.alcohol_flush_reaction')">Alcohol Flush Reaction</button><br>
-    <button class="btn darken-hover border spacing" (click)="dataService.showReport('wellness.caffeine_consumption')">Caffeine Consumption</button><br>
+    <div *ngFor="let x of dataService.reports; let i = index">
+      <button class="btn darken-hover border format" (click)="dataService.showReport(i)">
+        <span style="float: left">{{x.title}}</span>
+        <span style="float: right" class="text-info">{{x.result}}</span>
+      </button><br>
+    </div>
   </div>
   <div *ngIf="dataService.wellnessPage === 2">
     <button class="btn darken-hover border" style="float: left" (click)="dataService.wellnessPage = 1">&lt; Back</button><br><br>
-    <div *ngIf="!dataService.isWellness">
-      <h3>{{dataService.currReport.title}}</h3>
-    </div>
-    <div *ngIf="dataService.isWellness">
-      <h3>{{dataService.currReport.title}}</h3>
-      <h4>Your Result: {{dataService.currReport.summary.assessment.message}}</h4>
+    <h3>{{dataService.currReport.title}}</h3>
+    <div style="text-align: left">
+      <h4>Your Result: {{dataService.currReport.result}}</h4>
+      <div *ngIf="!dataService.isWellness">
+        <p>genetic weight</p>
+      </div>
+      <div *ngIf="dataService.isWellness">
+        <p>wellness</p>
+      </div>
     </div>
   </div>
 </div>

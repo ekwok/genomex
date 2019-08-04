@@ -2,6 +2,7 @@ button.darken-hover:hover {
   background-color: lightgray;
 }
 
-button.spacing {
+button.format {
   margin: 10px;
+  width: 60%;
 }

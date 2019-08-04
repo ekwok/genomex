@@ -117,16 +117,12 @@ export class DataService {
     });
   }
 
-  showReport(report: string) {
-    for (let obj of this.reports) {
-      if (obj.report_id === report) {
-        this.currReport = obj;
-        if (obj.report_type === 'wellness') {
-          this.isWellness = true;
-        } else {
-          this.isWellness = false;
-        }
-      }
+  showReport(idx: number) {
+    this.currReport = this.reports[idx];
+    if (this.reports[idx].report_type === 'wellness') {
+      this.isWellness = true;
+    } else {
+      this.isWellness = false;
     }
     this.wellnessPage = 2;
   }
