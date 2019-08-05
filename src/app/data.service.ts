@@ -24,6 +24,7 @@ export class DataService {
   reports = [];
   currReport = {};
   isWellness = false;
+  gpri = [];
 
   chrMap: {[key: string]: string} = {  // Map of chromosome names to accession numbers
     '1': 'NC_000001.10',
@@ -76,8 +77,8 @@ export class DataService {
       .then(
         res => {
           this.snps = Object.keys(res).map(function(snpIndex) {
-            const event = res[snpIndex];
-            return event;
+            const snp = res[snpIndex];
+            return snp;
           });
           this.snpsLoading = false;
           resolve();
@@ -98,7 +99,7 @@ export class DataService {
 
   getReports() {
     if (this.reports.length) {  // Do not fetch reports if they have already been fetched
-      return
+      return;
     }
     this.wellnessLoading = true;
     const promise = new Promise((resolve, reject) => {
@@ -107,8 +108,8 @@ export class DataService {
       .then(
         res => {
           this.reports = Object.keys(res).map(function(reportIndex) {
-            const event = res[reportIndex];
-            return event;
+            const report = res[reportIndex];
+            return report;
           });
           this.wellnessLoading = false;
           resolve();
@@ -119,12 +120,30 @@ export class DataService {
 
   showReport(idx: number) {
     this.currReport = this.reports[idx];
-    if (this.reports[idx].report_type === 'wellness') {
-      this.isWellness = true;
-    } else {
-      this.isWellness = false;
-    }
     this.wellnessPage = 2;
+    if (this.reports[idx].report_type === 'wellness') {  // Wellness report
+      this.isWellness = true;
+    } else {  // Genetic weight report
+      this.isWellness = false;
+      if (this.gpri.length) {  // Do not fetch GPRI objects if they have already been fetched
+        return;
+      }
+      this.wellnessLoading = true;
+      const promise = new Promise((resolve, reject) => {
+        this.http.get(this.serverURL + '/gpri/' + this.reports[idx].predictor_id + '/' + this.reports[idx].bin_num)
+        .toPromise()
+        .then(
+          res => {
+            this.gpri = Object.keys(res).map(function(gpriIndex) {
+              const obj = res[gpriIndex];
+              return obj;
+            });
+            this.wellnessLoading = false;
+            resolve();
+          }
+        );
+      });
+    }
   }
 
 }

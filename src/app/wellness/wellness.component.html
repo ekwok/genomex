@@ -16,7 +16,16 @@
     <div style="text-align: left">
       <h4>Your Result: {{dataService.currReport.result}}</h4><br>
       <div *ngIf="!dataService.isWellness">
-        <p>genetic weight</p>
+        <h4 style="text-align: center">Healthy Habits for Your Genetics</h4>
+        <p>23andMe looked at research participants with a genetic weight predisposition like yours and found certain lifestyle factors that were associated with the biggest weight differences.</p>
+        <p><b>These habits made the biggest difference in people with your genetics:</b></p>
+        <div *ngFor="let x of dataService.gpri">
+          <div class="card">
+            <h4>{{x.name}}</h4>
+            <h5>Associated with weighing up to <span class="text-primary">{{x.max_diff_val}}% less</span></h5>
+            <p>{{x.max_diff_exp}}</p>
+          </div>
+        </div>
       </div>
       <div *ngIf="dataService.isWellness">
         <h4>Genes:</h4>

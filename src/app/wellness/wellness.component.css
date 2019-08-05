@@ -6,3 +6,13 @@ button.format {
   margin: 10px;
   width: 60%;
 }
+
+div.card {
+  border-style: solid;
+  border-color: #c4c2c1;
+  border-width: thin;
+  padding: 15px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
