@@ -14,11 +14,12 @@
     <button class="btn darken-hover border" style="float: left" (click)="dataService.wellnessPage = 1">&lt; Back</button><br><br>
     <h3>{{dataService.currReport.title}}</h3>
     <div style="text-align: left">
-      <h4>Your Result: {{dataService.currReport.result}}</h4><br>
+      <h4>Your Result: {{dataService.currReport.result}}</h4>
       <div *ngIf="!dataService.isWellness">
+        <hr>
         <h4 style="text-align: center">Healthy Habits for Your Genetics</h4>
-        <p>23andMe looked at research participants with a genetic weight predisposition like yours and found certain lifestyle factors that were associated with the biggest weight differences.</p>
-        <p><b>These habits made the biggest difference in people with your genetics:</b></p>
+        <p>23andMe looked at research participants with a genetic weight predisposition like yours and found certain lifestyle habits that were associated with the largest weight differences.</p>
+        <p><b>These habits made the largest difference in people with your genetics:</b></p>
         <div *ngFor="let x of dataService.gpri">
           <div class="card">
             <h4>{{x.name}}</h4>
@@ -28,6 +29,7 @@
         </div>
       </div>
       <div *ngIf="dataService.isWellness">
+        <br>
         <h4>Genes:</h4>
         <div *ngFor="let x of dataService.currReport.genes">
           <div class="table-responsive">
