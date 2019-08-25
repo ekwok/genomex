@@ -1,10 +1,10 @@
-<div *ngIf="dataService.dataLoading">
+<div *ngIf="dataService.loginLoading">
   <img src="https://github.com/ekwok/genomex/blob/master/DNA-2.2s-200px.gif?raw=true">
 </div>
-<div *ngIf="!dataService.dataLoading">
+<div *ngIf="!dataService.loginLoading">
   <p>Hello {{dataService.first_name}}!</p>
   <p>Access Token: {{dataService.token}}</p>
-  <p>Profile ID: {{dataService.id}}</p>
+  <p>Profile ID: {{dataService.profileID}}</p>
   <ul class="nav nav-pills justify-content-center">
     <li class="nav-item">
       <a class="nav-link" routerLink="genetic" routerLinkActive="active current"><span class="d-sm-none">Genetic</span><span class="d-none d-sm-block">Genetic Data</span></a>

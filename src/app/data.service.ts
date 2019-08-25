@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 export class DataService {
   // serverURL = 'https://8080-dot-4701191-dot-devshell.appspot.com';
   serverURL = 'https://genomex.appspot.com';
-  dataLoading = false;
+  loginLoading = false;
   snpsLoading = false;
   wellnessLoading = false;
   first_name: string;
   token: string;
-  id: string;
+  profileID: string;
   geneticPage = 1;
   snps = [];
   currChr: string;
@@ -56,14 +56,25 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getData(code: string) {
-    this.dataLoading = true;
+  login(code: string) {
+    this.loginLoading = true;
     this.http.get<ResultsObj>(this.serverURL + '/' + code)
       .subscribe(data => {
           this.first_name = data.first_name;
           this.token = data.token;
-          this.id = data.id;
-          this.dataLoading = false;
+          this.profileID = data.profile_id;
+          this.loginLoading = false;
+        });
+  }
+
+  demoLogin() {
+    this.loginLoading = true;
+    this.http.get<ResultsObj>(this.serverURL + '/account/demo_oauth_token')
+      .subscribe(data => {
+          this.first_name = data.first_name;
+          this.token = data.token;
+          this.profileID = data.profile_id;
+          this.loginLoading = false;
         });
   }
 
@@ -72,7 +83,7 @@ export class DataService {
     this.currChr = chr;
     this.snpClicked = -1;
     const promise = new Promise((resolve, reject) => {
-      this.http.get(this.serverURL + '/snps/' + this.token + '/' + this.id + '/' + this.chrMap[chr])
+      this.http.get(this.serverURL + '/snps/' + this.token + '/' + this.profileID + '/' + this.chrMap[chr])
       .toPromise()
       .then(
         res => {
@@ -103,7 +114,7 @@ export class DataService {
     }
     this.wellnessLoading = true;
     const promise = new Promise((resolve, reject) => {
-      this.http.get(this.serverURL + '/wellness/' + this.token + '/' + this.id)
+      this.http.get(this.serverURL + '/wellness/' + this.token + '/' + this.profileID)
       .toPromise()
       .then(
         res => {
@@ -151,5 +162,5 @@ export class DataService {
 interface ResultsObj {
   first_name: string;
   token: string;
-  id: string;
+  profile_id: string;
 }

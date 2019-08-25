@@ -12,8 +12,12 @@ export class ResultsComponent implements OnInit {
   constructor(public dataService: DataService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    const code: string = this.activatedRoute.snapshot.queryParams['code'];
-    this.dataService.getData(code);
+    if (this.activatedRoute.snapshot.queryParams['code']) {
+      const code: string = this.activatedRoute.snapshot.queryParams['code'];
+      this.dataService.login(code);
+    } else {
+      this.dataService.demoLogin();
+    }
   }
 
 }
