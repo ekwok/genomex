@@ -1,3 +1,5 @@
-# genomex
+# GenomeX
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/genomex)
+https://genomex.stackblitz.io/
+
+Developed with StackBlitz ⚡️ https://stackblitz.com/edit/genomex
