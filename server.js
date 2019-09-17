@@ -1,5 +1,5 @@
-// NOTE: This file is not part of the Angular application on Stackblitz; it is
-// a server-side script that the front-end calls for data retrieval.
+// NOTE: This file is not part of the Angular app on Stackblitz; it is a
+// server-side script that the app calls for data retrieval.
 
 const express = require('express');
 const cors = require('cors');
