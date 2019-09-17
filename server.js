@@ -1,3 +1,6 @@
+// NOTE: This file is not part of the Angular application on Stackblitz; it is
+// a server-side script that the front-end calls for data retrieval.
+
 const express = require('express');
 const cors = require('cors');
 var request = require('request');
@@ -35,8 +38,8 @@ const chrMap = {  // Map of accession numbers to chromosome names
 
 app.get('/:auth_code', (req, res) => {
   postData = {
-    client_id: 'xxxxx',
-    client_secret: 'xxxxx',
+    client_id: 'xxxxx',  // Hidden
+    client_secret: 'xxxxx',  // Hidden
     code_verifier: 'dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk',
     grant_type: 'authorization_code',
     code: req.params.auth_code,
