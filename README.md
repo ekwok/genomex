@@ -1,6 +1,6 @@
 # GenomeX
 
-https://genomex.stackblitz.io/
+A web application for viewing 23andMe DNA test results and their health implications.
 
 ## Technical Details
 
